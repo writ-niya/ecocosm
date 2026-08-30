@@ -1,0 +1,10 @@
+# Netlify reads this on every deploy.
+[build]
+  command = "node build.js"
+  publish = "."
+
+# Pretty URLs and no caching surprises for the content files
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

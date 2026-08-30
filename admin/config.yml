@@ -1,0 +1,128 @@
+# ─────────────────────────────────────────────────────────────
+#  Understory — CMS configuration
+#
+#  Replace the two lines marked CHANGE ME with the values
+#  DecapBridge gives you when you register the site.
+# ─────────────────────────────────────────────────────────────
+
+backend:
+  name: git-gateway            # CHANGE ME — DecapBridge will give you this block
+  repo: your-name/understory   # CHANGE ME — your GitHub user / repo name
+  branch: main
+
+media_folder: "assets/art"     # where uploaded pictures are saved
+public_folder: "/assets/art"   # how the site refers to them
+
+publish_mode: simple
+
+collections:
+
+  # ── ENTRIES (leaves) ──────────────────────────────────────
+  - name: notes
+    label: Entries
+    label_singular: Entry
+    folder: content/notes
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    summary: "{{title}}  —  {{stage}}"
+    sortable_fields: [title, updated]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: stage
+        label: Growth stage
+        widget: select
+        options: [seedling, budding, evergreen]
+        default: seedling
+      - name: collection
+        label: Region
+        widget: select
+        options:
+          - { label: "Myth & Land", value: myth-land }
+          - { label: "The Colonial Fracture", value: fracture }
+          - { label: "Building It", value: building }
+          - { label: "Field Notes", value: field }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: updated, label: Last tended, widget: datetime,
+          date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { name: banner, label: Header picture, widget: image, required: false }
+      - { name: bannercaption, label: Header caption, widget: string, required: false }
+      - name: body
+        label: Writing
+        widget: markdown
+        hint: "Blocks work here. Type ::: spread | picture.jpg | caption on its own line, then your words, then ::: to close."
+
+  # ── REGION PAGES ──────────────────────────────────────────
+  - name: regions
+    label: Region pages
+    label_singular: Region page
+    folder: content/regions
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    hint: "The filename must match the region id exactly: myth-land, fracture, building, field."
+    fields:
+      - { name: intro, label: Intro line, widget: text, required: false }
+      - name: body
+        label: Writing
+        widget: markdown
+        required: false
+
+  # ── PUBLISHED WORK ────────────────────────────────────────
+  - name: writing
+    label: Chronicles
+    label_singular: Piece
+    folder: content/writing
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: outlet, label: Where it appeared, widget: string, required: false }
+      - { name: date, label: Date, widget: string, required: false }
+      - { name: url, label: Link, widget: string, required: false }
+      - { name: body, label: Note, widget: text, required: false }
+
+  # ── FIXED PAGES ───────────────────────────────────────────
+  - name: pages
+    label: Pages
+    files:
+
+      - name: home
+        label: Title screen
+        file: content/pages/home.md
+        format: yaml-frontmatter
+        fields:
+          - { name: intro, label: Intro under the title, widget: text }
+          - { name: body, label: Extra blocks (optional), widget: markdown, required: false }
+
+      - name: about
+        label: The Keeper
+        file: content/pages/about.md
+        format: yaml-frontmatter
+        fields:
+          - { name: name, label: Name, widget: string, required: false }
+          - { name: tagline, label: Tagline, widget: string, required: false }
+          - { name: based, label: Based, widget: string, required: false }
+          - { name: writing, label: Writing, widget: string, required: false }
+          - { name: portrait, label: Portrait, widget: image, required: false }
+          - { name: body, label: Writing, widget: markdown }
+
+      - name: now
+        label: Now
+        file: content/pages/now.md
+        format: yaml-frontmatter
+        fields:
+          - { name: updated, label: As of, widget: string, required: false }
+          - { name: body, label: Writing, widget: markdown }
+
+      - name: colophon
+        label: Colophon
+        file: content/pages/colophon.md
+        format: yaml-frontmatter
+        fields:
+          - { name: stamp, label: Subtitle, widget: string, required: false }
+          - { name: body, label: Writing, widget: markdown }
