@@ -552,6 +552,29 @@ var CONFIG = {
      Icons are chosen from the label: Email, Instagram, TikTok, LinkedIn,
      Substack, Bluesky, GitHub. Anything else gets a plain mark.
      A row only appears once its url is filled in. */
+ /* ── EXTRA PAGES ─────────────────────────────────────────────
+     Each appears in the top bar. Write the page in the body,
+     between the backticks. Add as many as you like. */
+  extraPages:[
+    { id:'reading', label:'the reading log', kick:'what is on the desk',
+      intro:'Everything currently open, half-read, or waiting.',
+      body:`
+::: entry accent | Reading now
+**Rob Nixon** — *Slow Violence*
+The idea that some damage is too gradual to photograph.
+:::
+
+# Currently open
+
+- **Amitav Ghosh** — *The Nutmeg's Curse*
+- **Linda Tuhiwai Smith** — *Decolonizing Methodologies*
+
+## Waiting
+
+- [ ] Bram Büscher — *The Conservation Revolution*
+- [ ] Vandana Shiva — *Staying Alive*
+` }
+  ],
   socials:[
     { label:'Substack',  handle:'The Political Engram', url:'yourname.substack.com' },
     { label:'Instagram', handle:'@yourhandle',          url:'instagram.com/yourhandle' },
@@ -817,15 +840,21 @@ function linksOf(n){var map=titleMap(),o=[];
 function backlinks(n){return data.notes.filter(function(x){return x.id!==n.id&&linksOf(x).indexOf(n.id)>-1;});}
 
 /* ═══ chrome ═══ */
-var NAV=[{v:'home',k:'home'},{v:'colls',k:'colls'},{v:'notes',k:'notes'},
-  {v:'graph',k:'graph'},{v:'writing',k:'writing'},{v:'about',k:'about'}];
+function navItems(){
+  var base=[{v:'home',k:'home'},{v:'colls',k:'colls'},{v:'notes',k:'notes'},
+    {v:'graph',k:'graph'},{v:'writing',k:'writing'}];
+  (CONFIG.extraPages||[]).forEach(function(x){
+    base.push({ v:'page:'+x.id, label:x.label||x.id }); });
+  base.push({v:'about',k:'about'});
+  return base;
+}
 function drawChrome(){
   document.getElementById('crestT').textContent=CONFIG.siteTitle;
   document.getElementById('logo').innerHTML=ART.logo?'<img src="'+esc(ART.logo)+'" alt="" onerror="this.remove()" />':'';
   var nav=document.getElementById('nav');
-  nav.innerHTML=NAV.map(function(i){
+  nav.innerHTML=navItems().map(function(i){
     var on=(view===i.v)||(i.v==='colls'&&view==='coll')||(i.v==='notes'&&view==='note');
-    return '<button data-nav="'+i.v+'"'+(on?' class="on"':'')+'>'+esc(LEX[i.k])+'</button>';}).join('');
+        return '<button data-nav="'+i.v+'"'+(on?' class="on"':'')+'>'+esc(i.label||LEX[i.k])+'</button>';}).join('');
   Array.prototype.forEach.call(nav.querySelectorAll('button'),function(b){
     b.addEventListener('click',function(){go(b.getAttribute('data-nav'));});});
   var live=CONFIG.socials.filter(function(s){return s.url&&s.label;});
@@ -1253,6 +1282,21 @@ function drawWriting(){
       '<div class="gline mid"></div></div>'+
       '<div class="panel read">'+cnrs()+body+'</div></div></section>';
 }
+ function drawExtra(cfg){
+  document.getElementById('content').innerHTML=
+    '<section class="pad"><div class="wrap">'+
+      '<div class="mid" style="margin-bottom:26px">'+
+        (cfg.kick?'<div class="kick">'+esc(cfg.kick)+'</div>':'')+
+        '<h1 class="h1" style="margin-top:8px;font-size:clamp(28px,4vw,52px)">'+
+          esc(cfg.label||cfg.id)+'</h1>'+
+        '<div class="gline mid"></div>'+
+        (cfg.intro?'<p class="lede">'+esc(cfg.intro)+'</p>':'')+
+      '</div>'+
+      '<div class="panel read">'+cnrs()+'<div class="prose" id="pb">'+
+        renderBody(cfg.body||'')+'</div></div>'+
+    '</div></section>';
+  wireLinks(document.getElementById('pb'));
+}
 function drawSimple(name){
   var p=data.pages[name]||{meta:{},body:''};
   var t={now:LEX.now,colophon:LEX.colophon};
@@ -1361,6 +1405,11 @@ function render(){
   if(view==='now'){drawSimple('now');return;}
   if(view==='colophon'){drawSimple('colophon');return;}
   if(view==='writing'){drawWriting();return;}
+   if(view.indexOf('page:')===0){
+    var pid=view.slice(5),cfg=null;
+    (CONFIG.extraPages||[]).forEach(function(x){ if(x.id===pid)cfg=x; });
+    if(cfg){ drawExtra(cfg); return; }
+  }
   if(view==='note'&&activeId){var n=noteById(activeId);if(n){drawNote(n);return;}}
   view='home';drawHome();
 }
