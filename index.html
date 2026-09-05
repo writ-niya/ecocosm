@@ -556,8 +556,8 @@ var CONFIG = {
      Each appears in the top bar. Write the page in the body,
      between the backticks. Add as many as you like. */
   extraPages:[
-    { id:'reading', label:'the reading log', kick:'what is on the desk',
-      intro:'Everything currently open, half-read, or waiting.',
+    { id:'reading', label:'the reading log', kick:'my personal library',
+      intro:'A million tabs, a thousand journals and hundreds of books.',
       body:`
 ::: entry accent | Reading now
 **Rob Nixon** — *Slow Violence*
@@ -990,7 +990,7 @@ function drawHome(){
     '</section>'+
     '<section class="pad"><div class="wrap">'+
       '<div class="mid" style="margin-bottom:34px">'+
-        '<div class="kick">choose your ground</div>'+
+        '<div class="kick">explore</div>'+
         '<h2 class="h1" style="margin-top:8px;font-size:clamp(26px,3.6vw,44px)">'+esc(LEX.colls)+'</h2>'+
         '<div class="gline mid"></div></div>'+
       regionStrips(true)+
@@ -999,12 +999,12 @@ function drawHome(){
     (recent.length
       ? '<section class="pad" style="padding-top:0"><div class="wrap">'+
           '<div class="mid" style="margin-bottom:34px">'+
-            '<div class="kick">most lately tended</div>'+
+            '<div class="kick">recent observations</div>'+
             '<h2 class="h1" style="margin-top:8px;font-size:clamp(26px,3.6vw,44px)">latest entries</h2>'+
             '<div class="gline mid"></div></div>'+
           entryStrips(recent)+
           '<div class="mid" style="margin-top:40px">'+
-            '<button class="btn" data-v="notes">open the full codex</button></div>'+
+            '<button class="btn" data-v="notes">open the almanac</button></div>'+
         '</div></section>'
       : '')+
 
@@ -1023,10 +1023,10 @@ function drawCollections(){
   document.getElementById('content').innerHTML=
     '<section class="pad"><div class="wrap">'+
       '<div class="mid" style="margin-bottom:clamp(30px,5vw,64px)">'+
-        '<div class="kick">choose your ground</div>'+
+        '<div class="kick">Explore</div>'+
         '<h1 class="h1" style="margin-top:10px">'+esc(LEX.colls)+'</h1>'+
         '<div class="gline mid"></div>'+
-        '<p class="lede">Each region holds a different part of the thinking.</p>'+
+        '<p class="lede">An entire cosmos of ideas.</p>'+
         '<div style="margin-top:46px">'+regionStrips(true)+'</div></div>'+
     '</div></section>';
   wireColl();
@@ -1217,7 +1217,7 @@ function drawAbout(){
   document.getElementById('content').innerHTML=
     '<section class="pad"><div class="wrap" style="--sc:#8A8A80">'+
       '<div class="mid" style="margin-bottom:30px">'+
-        '<div class="kick">who tends this</div>'+
+        '<div class="kick">growing this</div>'+
         '<h1 class="h1" style="margin-top:8px;font-size:clamp(28px,4vw,52px)">'+
           esc(p.meta.name||LEX.about)+'</h1>'+
         '<div class="gline mid"></div></div>'+
