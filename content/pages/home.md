@@ -1,37 +1,31 @@
 ---
-eyebrow: a digital garden
+eyebrow: a working cosmology
 heading: The Garden
 image:
 gallery:
 gallerycaptions:
 gallerytitle: fragments
-intro: Territory — the politics of land, myth, and nonhuman life. Who holds the authority to narrate the natural world, and what colonialism did to that authority.
+intro: Writer, researcher, and analyst. Six spheres of work — environment, fiction, research, analysis, design, and journaling — circling one question: who holds the authority to narrate the natural world.
 ---
 
-::: spread | assets/land.jpg | the map is not the territory
-# The Question Underneath
+::: spread | assets/art/a97fd52b9cbf9e9d9d3fe1af61691389.jpg | the map is not the territory
+# One Question, Six Ways
 ^ what this is for
-Stories about nature are never neutral. Whoever decides what counts as wild, sacred, or myth is exercising power — and colonialism's deepest damage was not only extraction but the replacement of one set of stories about land with another, called universal.
-
-Everything here circles that. Sometimes as political writing, sometimes as fiction, sometimes as a half-formed note that has been sitting for a year.
+Stories about nature are never neutral. Whoever decides what counts as wild, sacred, or myth is exercising power. I come at that from several directions at once — in the field, in the archive, in analysis, and in fiction — and each sphere here is one of those directions.
 :::
 
-::: spread dark | assets/novel.jpg | drafting, slowly and on purpose
-# Written Three Ways
-^ the same argument
-The essays argue it directly. The novel works it from the inside, through non-Western mythology. The worldbuilding tests it at low stakes, where a magic system can carry the politics of the cosmology it borrows from.
-
-None of the three is finished. That is rather the point of a garden.
+::: table | Sphere | What I bring
+# What I Bring
+Environment :: conservation fieldwork with WWF, writing on land and power
+Fiction :: a novel in progress, worldbuilding grounded in myth
+Research :: qualitative interviews, research methods, synthesis
+Analysis :: political analysis at The Political Engram; editorial lead at Sincerely Theirs
+Design :: the ShibuiByNia brand, and this site
+Journaling :: craft essays at Ink In Still Water
 :::
 
-::: arch | assets/left.jpg | assets/right.jpg
-# What You Will Find Here
-^ how to wander
-Notes at three stages of growth — seedling, budding, evergreen — grouped by territory rather than by date, and linked to each other wherever the thinking connects.
-:::
-
-::: spread | assets/reading.jpg | the shelf, in progress
-# Still Reading
-^ where it comes from
-Nixon on slow violence. Ghosh on the nutmeg. Tuhiwai Smith on who is permitted to produce knowledge. The [[Reading Log]] keeps the running list, and the [[Territory Map]] holds the shape of the argument.
+::: spread dark | assets/art/d8e2899d6aee7d52fc4e859cd502d96e.jpg | drafting, slowly and on purpose
+# Working, Not Finished
+^ how to read this
+Each sphere opens onto its own page: the skills it holds, and the entries that show them. Notes carry a growth stage — faint, waxing, fixed — so you can tell a passing thought from something settled.
 :::

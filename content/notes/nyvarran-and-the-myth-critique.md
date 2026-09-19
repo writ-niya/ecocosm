@@ -1,7 +1,7 @@
 ---
 title: Nyvarran & the Myth Critique
 stage: seedling
-collection: building
+collection: fiction
 tags: [fiction, worldbuilding]
 updated: 2026-08-04
 banner:

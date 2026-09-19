@@ -1,7 +1,7 @@
 ---
 title: Reading Log
 stage: budding
-collection: field
+collection: research
 tags: [reading]
 updated: 2026-07-20
 banner:

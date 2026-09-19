@@ -39,10 +39,12 @@ collections:
         label: Region
         widget: select
         options:
-          - { label: "Myth & Land", value: myth-land }
-          - { label: "The Colonial Fracture", value: fracture }
-          - { label: "Building It", value: building }
-          - { label: "Field Notes", value: field }
+          - { label: "Environment", value: environment }
+          - { label: "Fiction", value: fiction }
+          - { label: "Research", value: research }
+          - { label: "Analysis", value: analysis }
+          - { label: "Design", value: design }
+          - { label: "Journaling", value: journaling }
       - { name: tags, label: Tags, widget: list, required: false }
       - { name: updated, label: Last tended, widget: datetime,
           date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
@@ -62,7 +64,7 @@ collections:
     slug: "{{slug}}"
     extension: md
     format: yaml-frontmatter
-    hint: "The filename must match the region id exactly: myth-land, fracture, building, field."
+    hint: "The filename must match the region id exactly: environment, fiction, research, analysis, design, journaling."
     fields:
       - { name: intro, label: Intro line, widget: text, required: false }
       - name: body

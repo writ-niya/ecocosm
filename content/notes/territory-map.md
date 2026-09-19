@@ -1,7 +1,7 @@
 ---
 title: Territory Map
 stage: budding
-collection: myth-land
+collection: environment
 tags: [territory, reading]
 updated: 2026-08-01
 banner:

@@ -310,7 +310,7 @@
     background:none;font-style:italic;color:var(--ink-hi)}
   .prose hr{border:0;border-top:1px solid var(--edge);margin:30px 0}
   .prose strong{color:var(--ink-hi);font-weight:600}
-  .prose a.wikilink{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,162,39,.4)}
+  .prose a.wikilink{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(183,194,189,.4)}
   .prose a.wikilink:hover{border-bottom-color:var(--gold)}
   .wikilink--new{color:var(--ink-dim)!important;border-bottom-style:dotted!important}
   .fig{margin:26px 0;border:1px solid var(--edge);position:relative;background:var(--panel-2)}
@@ -319,7 +319,7 @@
     color:var(--ink-dim);text-align:center;padding:8px;border-top:1px solid var(--edge)}
   .fslot{min-height:170px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
     font-family:var(--f-mark);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);
-    background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(201,162,39,.06) 8px,rgba(201,162,39,.06) 9px)}
+    background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(183,194,189,.06) 8px,rgba(183,194,189,.06) 9px)}
 
   .blk{margin:clamp(30px,5vw,64px) 0}
   .blk__lead{font-family:var(--f-mark);font-size:10px;font-weight:600;letter-spacing:.22em;
@@ -359,7 +359,7 @@
   .back:hover{color:var(--gold)}
   .rowlist{list-style:none;margin:0;padding:0}
   .rowl{display:flex;gap:14px;align-items:baseline;cursor:pointer;padding:14px 6px;border-bottom:1px solid var(--edge)}
-  .rowl:hover{background:rgba(201,162,39,.06)}
+  .rowl:hover{background:rgba(183,194,189,.06)}
   .rowl:hover .rowl__t{color:var(--gold)}
   .rowl__n{font-family:var(--f-mark);font-size:9.5px;color:var(--gold);min-width:26px}
   .rowl__t{font-family:var(--f-display);font-size:20px;flex:1;color:var(--ink-hi);line-height:1.2}
@@ -395,6 +395,17 @@
   .loading{text-align:center;padding:100px 0;font-style:italic;color:var(--ink-dim)}
   .notice{padding:22px;text-align:center;color:var(--ink-dim);border:1px solid var(--edge);
     margin:60px auto;max-width:620px}
+  .vpan__k{display:block;font-family:var(--f-body);font-style:italic;font-size:13.5px;line-height:1.35;color:var(--ink-dim);margin:5px 0 7px;letter-spacing:0;text-transform:none}
+  .vrow--wide .vpan__k{min-height:2.7em}
+  td a.wikilink,td .wikilink{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--edge);cursor:pointer}
+  td a.wikilink:hover{border-bottom-color:var(--gold)}
+  .vrow--wide{grid-template-columns:repeat(6,minmax(0,1fr));max-width:1180px}
+  .vrow--wide .vpan__img{height:clamp(240px,24vw,330px)}
+  @media (max-width:980px){.vrow--wide{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media (max-width:620px){.vrow--wide{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .vrow:not(.vrow--wide){grid-template-columns:repeat(auto-fit,minmax(140px,196px));justify-content:center}
+  @media (max-width:620px){.vrow:not(.vrow--wide){grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .band .band__in .h1,.band .band__in .kick{color:#F3F0E8!important;text-shadow:0 2px 22px rgba(0,0,0,.75)}
 </style>
 </head>
 <body>
@@ -446,7 +457,12 @@ var ART = {
 
   /* a landscape per collection — the region screens (1200x700) */
   regions: {
-    'myth-land': 'assets/art/myth.jpg',
+    'environment': 'assets/art/1cb55736ce07609b4c2384640bd67443.jpg',
+    'fiction': 'assets/art/myth.jpg',
+    'research': 'assets/art/b9bd7464a1a9d0c311aa560aea445ad6.jpg',
+    'analysis': 'assets/art/7040eea2e39a1fb35dab07d8849aa3d5.jpg',
+    'design': 'assets/art/1fb03d6c4d91284452afb29816628f2a.jpg',
+    'journaling': 'assets/art/4eb466b80dd639f19ce5996641c9b84b.jpg'
   },
   /* an emblem per collection (square, transparent PNG) */
   sigils: {
@@ -454,7 +470,18 @@ var ART = {
   },
   /* an optional portrait per note, used in the codex (600x800) */
   portraits: {
-    // 'territory-map': 'assets/art/territory.jpg',
+    'the-novel': 'assets/notes/the-novel.jpg',
+    'territory-map': 'assets/notes/territory-map.jpg',
+    'nyvarran-and-the-myth-critique': 'assets/notes/nyvarran-and-the-myth-critique.jpg',
+    'building-this-site': 'assets/notes/building-this-site.jpg',
+    'reading-log': 'assets/notes/reading-log.jpg',
+    'open-questions': 'assets/notes/open-questions.jpg',
+    'how-to-write-a-leaf': 'assets/notes/how-to-write-a-leaf.jpg',
+    'the-political-engram': 'assets/notes/the-political-engram.jpg',
+    'research-toolkit': 'assets/notes/research-toolkit.jpg',
+    'wwf-fieldwork': 'assets/notes/wwf-fieldwork.jpg',
+    'ink-in-still-water': 'assets/notes/ink-in-still-water.jpg',
+    'shibuibynia': 'assets/notes/shibuibynia.jpg'
   }
 };
 
@@ -469,32 +496,12 @@ var THEME = {
     mark:{ name:'Barlow Condensed', weights:'400;500;600', fallback:'sans-serif' },
     baseSize:'17px'
   },
-  defaultPalette:'verdigris',
+  defaultPalette:'shadow',
   palettes:[
-    { id:'bone', name:'Bone \u2014 paper & ink', light:true,
-      bg:'#F2F0EA', panel:'#E9E6DD', panel2:'#E3DFD4', edge:'rgba(40,44,52,.20)',
-      ink:'#3A3D44', inkHi:'#1C1F26', inkDim:'#6E727B',
-      gold:'#7C6A4A', glow:'rgba(140,150,170,.14)', glowHi:'rgba(140,150,170,.24)' },
 
-    { id:'mist', name:'Mist \u2014 pale & indigo', light:true,
-      bg:'#EEF0F4', panel:'#E4E7EE', panel2:'#DDE1EA', edge:'rgba(46,58,84,.20)',
-      ink:'#3B4453', inkHi:'#1B2331', inkDim:'#6D7688',
-      gold:'#5C6B88', glow:'rgba(120,150,200,.16)', glowHi:'rgba(120,150,200,.28)' },
 
-    { id:'verdigris', name:'Verdigris \u2014 pale & teal', light:true,
-      bg:'#EDF1EF', panel:'#E2E8E5', panel2:'#DAE2DE', edge:'rgba(38,72,66,.20)',
-      ink:'#394744', inkHi:'#182724', inkDim:'#6B7B77',
-      gold:'#3E7A70', glow:'rgba(90,170,155,.16)', glowHi:'rgba(90,170,155,.28)' },
 
-    { id:'rosewater', name:'Rosewater \u2014 pale & soft red', light:true,
-      bg:'#F4EFEC', panel:'#EBE3DF', panel2:'#E4DAD5', edge:'rgba(96,54,50,.19)',
-      ink:'#443634', inkHi:'#241A19', inkDim:'#7B6864',
-      gold:'#A15A50', glow:'rgba(190,130,120,.15)', glowHi:'rgba(190,130,120,.26)' },
 
-    { id:'shell', name:'Shell \u2014 warm cream', light:true,
-      bg:'#F5F1E6', panel:'#EDE7D8', panel2:'#E6DFCD', edge:'rgba(74,60,44,.20)',
-      ink:'#43392E', inkHi:'#241D15', inkDim:'#7A6E5F',
-      gold:'#8A6A3C', glow:'rgba(190,160,110,.16)', glowHi:'rgba(190,160,110,.28)' },
 
     { id:'tide', name:'Tide \u2014 indigo & bone',
       bg:'#0E1626', panel:'#18243B', panel2:'#111C2E', edge:'rgba(159,182,212,.30)',
@@ -504,10 +511,10 @@ var THEME = {
       bg:'#141A22', panel:'#1E2733', panel2:'#161E28', edge:'rgba(186,198,212,.28)',
       ink:'#CDD5DF', inkHi:'#F2F5F8', inkDim:'#8B96A4',
       gold:'#BAC6D4', glow:'rgba(170,190,215,.14)', glowHi:'rgba(170,190,215,.28)' },
-    { id:'shadow', name:'Shadow Isles \u2014 green & gold',
-      bg:'#0A0F0D', panel:'#111A16', panel2:'#0D1512', edge:'rgba(201,162,39,.28)',
-      ink:'#D9D3C4', inkHi:'#F2ECDA', inkDim:'#9AA398',
-      gold:'#C9A227', glow:'rgba(64,200,160,.16)', glowHi:'rgba(64,200,160,.30)' },
+    { id:'shadow', name:'Shadow Isles \u2014 green & silver',
+      bg:'#0A0F0D', panel:'#111A16', panel2:'#0D1512', edge:'rgba(183,194,189,.22)',
+      ink:'#D3D8D5', inkHi:'#EEF1EF', inkDim:'#939C97',
+      gold:'#B7C2BD', glow:'rgba(110,170,150,.12)', glowHi:'rgba(110,170,150,.24)' },
     { id:'ember', name:'Ember \u2014 amber & smoke',
       bg:'#0F0B08', panel:'#1B1410', panel2:'#140F0B', edge:'rgba(214,160,74,.28)',
       ink:'#DFD3C0', inkHi:'#F6ECD9', inkDim:'#A39480',
@@ -535,14 +542,24 @@ var CONFIG = {
     colophon:'colophon', seed:'faint', bud:'waxing', ever:'fixed' },
 
   collections:[
-    { id:'myth-land', name:'Myth & Land', color:'#4FB58B', num:'I',
-      desc:'Mythology, folklore, and the way cultures define their relationship to land.' },
-    { id:'fracture', name:'The Colonial Fracture', color:'#C4694A', num:'II',
-      desc:'Conservation politics, the Global South, disinformation about land.' },
-    { id:'building', name:'Work in Progress', color:'#6E93C4', num:'III',
-      desc:'Notes on my manuscript, worldbuilding and ideas that have not found a home yet.' },
-    { id:'literature-philosophy', name:'Literary Notes', color:'#A8A45C', num:'IV',
-      desc:'Literature, philosophy and how ideas connect.' }
+    { id:'environment', name:'Environment', color:'#4F9A78', num:'I',
+      skills:'conservation writing \u00b7 fieldwork \u00b7 community engagement',
+      desc:'Conservation, land, and nonhuman life \u2014 and who gets to narrate them.' },
+    { id:'fiction', name:'Fiction', color:'#8C72B0', num:'II',
+      skills:'long-form fiction \u00b7 worldbuilding \u00b7 myth',
+      desc:'The novel and the worlds around it, working the same argument from the inside.' },
+    { id:'research', name:'Research', color:'#6E93C4', num:'III',
+      skills:'qualitative interviews \u00b7 synthesis \u00b7 reading',
+      desc:'How the thinking gets built: interviews, methods, and a long reading list.' },
+    { id:'analysis', name:'Analysis', color:'#C4694A', num:'IV',
+      skills:'political analysis \u00b7 editing \u00b7 argument',
+      desc:'International affairs, the Global South, and disinformation, argued plainly.' },
+    { id:'design', name:'Design', color:'#B8914A', num:'V',
+      skills:'branding \u00b7 product design \u00b7 web',
+      desc:'Making things look like what they mean: a brand, a site, a page.' },
+    { id:'journaling', name:'Journaling', color:'#8E9A5A', num:'VI',
+      skills:'craft essays \u00b7 process notes',
+      desc:'The notebook: writing about writing, and thoughts before they are sorted.' }
   ],
 
   /* Fill in the ones you use and delete the rest. A link only appears
@@ -576,11 +593,10 @@ The idea that some damage is too gradual to photograph.
 ` }
   ],
   socials:[
-    { label:'Substack',  handle:'The Political Engram', url:'yourname.substack.com' },
-    { label:'Instagram', handle:'@yourhandle',          url:'instagram.com/yourhandle' },
-    { label:'TikTok',    handle:'@yourhandle',          url:'tiktok.com/@yourhandle' },
-    { label:'LinkedIn',  handle:'Your Name',            url:'linkedin.com/in/yourname' },
-    { label:'Email',     handle:'you@example.com',      url:'you@example.com' }
+    { label:'Substack',  handle:'The Political Engram', url:'analysesbynia.substack.com' },
+    { label:'Substack',  handle:'Ink In Still Water',   url:'inkinstillwater.substack.com' },
+    { label:'LinkedIn',  handle:'Wania Sadiq',          url:'linkedin.com/in/wania-sadiq' },
+    { label:'Email',     handle:'wania.sadiq3107@gmail.com', url:'wania.sadiq3107@gmail.com' }
   ]
 };
 /* ═══════════════ END OF THE EASY EDITS ═══════════════ */
@@ -590,19 +606,30 @@ The idea that some damage is too gradual to photograph.
    Upload just this; no folders needed.
    ───────────────────────────────────────────────────────────── */
 var EMBEDDED = {
- "content/manifest.json": "{\n  \"notes\": [\n    \"how-to-write-a-leaf\",\n    \"nyvarran-and-the-myth-critique\",\n    \"open-questions\",\n    \"reading-log\",\n    \"territory-map\"\n  ],\n  \"writing\": [\n    \"example-piece\"\n  ]\n}\n",
- "content/notes/how-to-write-a-leaf.md": "---\ntitle: How to Write a Leaf\nstage: evergreen\ncollection: field\ntags: [guide, formatting]\nupdated: 2026-08-18\nbanner:\nbannercaption: a caption sits beneath the picture, in script\n---\n\nEvery note is a plain text file in `content/notes/`. The block at the very top — between the two lines of dashes — is the frontmatter, where the title, stage, folder, and tags live. Everything after it is what you see here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nThe first letter of the first paragraph becomes an illuminated capital automatically.\n\n# Ordinary Writing\n\nType one hash for a major heading, two for the flowing script heading below. Write **bold** with two asterisks, *italic* with one, and link to another note with double brackets like [[Territory Map]].\n\n## A flourish heading\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\n- Begin a line with a dash for a botanical bullet\n- Excepteur sint occaecat cupidatat non proident\n- [x] a finished thing, which strikes itself through\n- [ ] a thing still waiting\n\n> A line beginning with a bracket becomes a pulled quote\n\n---\n\n::: spread | assets/one.jpg | a caption for the picture\n# A Spread\n^ picture on the left\nThis is a spread block. The picture sits on one side and the words on the other. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.\n\nWrite as many paragraphs as you like inside it — they all stay beside the picture.\n:::\n\n::: spread | assets/two.jpg | another caption\n# It Alternates\n^ picture on the right\nUse `spread` again and the picture automatically moves to the other side. Keep adding them and they keep alternating down the page, the way the reference designs do.\n\nIf you want to force a side instead, write `spread-left` or `spread-right`.\n:::\n\n::: arch | assets/left.jpg | assets/right.jpg\n# Between Two Arches\n^ the almanac arrangement\nTwo arched pictures with the words held between them. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.\n:::\n\n::: cluster | assets/a.jpg | assets/b.jpg | assets/c.jpg | assets/d.jpg\n# A Scattered Cluster\nSmall plates sitting at slightly different heights, each numbered. Good for fragments, references, or a run of images that belong together.\n:::\n\n::: band dark | assets/wide.jpg\n# Words Over a Picture\n^ a full width band\nThe picture runs the full width and the words lay over it. Add `dark` to any block to invert it onto a dark panel, like the lower half of the almanac design.\n:::\n\n::: spread\n# An Empty Slot\nLeave the picture path out entirely and the block shows a marked empty frame, so you can build a page before you have the pictures for it.\n:::\n\n## Bestiary blocks\n\nThree more blocks, for when a note needs the density of a reference page.\n\n::: entry accent | Property\n# Property\nA bordered box with a solid header bar. Write `::: entry | Header name` and the\nwords inside become the body. Add the word `accent` to colour the bar.\n:::\n\n::: table | Term | Meaning\n# A Small Table\nseedling :: a thought not yet sat with\nbudding :: taking a shape, still moving\nevergreen :: settled enough to build on\n:::\n\nWrite each row as `left :: right`. The two words after the pipe become column headings.\n\n::: omens\n# Omens\n- Begin each line with a dash. They number themselves, in the manner of a field guide.\n- Add the word `two` after `omens` to set them in two columns.\n- Sed ut perspiciatis unde omnis iste natus error sit voluptatem.\n:::\n\n## Adding your own\n\nCopy any block above, change the picture paths and the words, and move the whole block up or down by cutting and pasting it. Add as many as you want — there is no limit to how many picture slots a page can hold.\n\nLeave a picture path empty and you get a marked empty slot, so you can lay out a page before you have the pictures.\n",
- "content/notes/nyvarran-and-the-myth-critique.md": "---\ntitle: Nyvarran & the Myth Critique\nstage: seedling\ncollection: building\ntags: [fiction, worldbuilding]\nupdated: 2026-08-04\nbanner:\nbannercaption:\n---\n\nSix arcana, six houses, six patron animals — Nyvarran runs on the idea that a philosophy of nature can also be a form of political power. Which is, unintentionally, the argument in [[Territory Map]] played out as fiction first.\n\nWorth testing: what would it mean for a house's claim to land to carry the weight real relationships to land carry, rather than remaining pure aesthetic?\n\nSee [[Open Questions]].\n",
- "content/notes/open-questions.md": "---\ntitle: Open Questions\nstage: seedling\ncollection: fracture\ntags: [territory]\nupdated: 2026-07-28\nbanner:\nbannercaption:\n---\n\nThings nobody seems to be writing yet.\n\n- What happens if a fantasy magic system keeps the *politics* of the cosmology it borrows from — land rights, kinship, colonial history — instead of only the aesthetics?\n- Where does greenwashing overlap with disinformation? Who gets framed as a poacher in coverage, and who decides?\n- Is the native/invasive binary in conservation science as neutral as it sounds?\n\nLinked from [[Territory Map]]. Tested in [[Nyvarran & the Myth Critique]].\n",
- "content/notes/reading-log.md": "---\ntitle: Reading Log\nstage: budding\ncollection: field\ntags: [reading]\nupdated: 2026-07-20\nbanner:\nbannercaption:\n---\n\n- [ ] Rob Nixon — *Slow Violence and the Environmentalism of the Poor*\n- [ ] Amitav Ghosh — *The Nutmeg's Curse*\n- [ ] Linda Tuhiwai Smith — *Decolonizing Methodologies*\n- [ ] Robin Wall Kimmerer — *Braiding Sweetgrass*\n- [ ] Elizabeth DeLoughrey — *Allegories of the Anthropocene*\n\nNotes as I go. Context in [[Territory Map]].\n",
- "content/notes/territory-map.md": "---\ntitle: Territory Map\nstage: budding\ncollection: myth-land\ntags: [territory, reading]\nupdated: 2026-08-01\nbanner:\nbannercaption:\n---\n\nWho holds authority to narrate the natural world — and what colonialism did to that authority. Fiction, political writing, and worldbuilding are three registers of one question.\n\n## People & concepts to hold\n- Fortress conservation — parks built by excluding the people who lived there first\n- Green colonialism — climate urgency reproducing old displacement\n- Rob Nixon, *Slow Violence and the Environmentalism of the Poor*\n- Amitav Ghosh, *The Nutmeg's Curse*\n- Linda Tuhiwai Smith, *Decolonizing Methodologies*\n- Land Back; Indigenous Protected and Conserved Areas\n\n> the map is not the territory, but somebody drew the map\n\n---\n\nSee [[Open Questions]] for the gaps, and [[Nyvarran & the Myth Critique]] for where the fiction tests it first.\n",
- "content/regions/field.md": "---\nintro: Reading, half-thoughts, things overheard. The bench where everything sits before it is sorted.\n---\n\n::: entry accent | How to use this region\nNothing here is finished, and much of it will be wrong. Entries move out of Field Notes\nonce they belong somewhere — so a thing sitting here for a long time is usually a sign\nI have not decided what it is yet.\n:::\n",
- "content/regions/myth-land.md": "---\nintro: Mythology, folklore, and the way cultures define their relationship to land.\n---\n\n::: spread | assets/art/myth-1.jpg | a caption for the picture\n# Why Myth Counts as Evidence\n^ the argument of this region\nA story about a river that must not be crossed is doing several things at once. It is a\nprohibition, a memory, and a claim about who belongs to that place. Read as literature it\nis charming. Read as evidence it is a land record.\n\nThis region collects the ones I keep returning to.\n:::\n\n::: table | Term | What it means here\ncosmology :: the shape a culture believes the world has\ntenure :: who a place recognises as belonging to it\nenclosure :: the act of making shared land private\n:::\n",
- "content/pages/about.md": "---\nname: Nia\ntagline: writer\nbased: Ankara\nwriting: essays & fiction\nportrait:\nbanner:\ngallery:\ngallerycaptions:\n---\n\nI write. That is the first and most stubborn fact about me — essays, fiction, and a great deal that never leaves the notebook.\n\nMost of what I make circles one question: who holds the authority to narrate the natural world, and what colonialism did to that authority. It shows up as political writing about conservation and the Global South, and as fiction — a novel drawing on non-Western mythology to work the same argument from the inside.\n\nThis site is the working room rather than the finished shelf. Most of it is unfinished by design; see the [[Territory Map]] for where the thinking is headed.\n",
- "content/pages/colophon.md": "---\nstamp: how and why this is built\nbanner:\nbannercaption:\n---\n\nThis is a digital garden rather than a blog. Nothing here is arranged by date, and very little of it is finished.\n\n## How it works\nEvery note carries a growth stage — seedling, budding, evergreen — so you can tell what is a passing thought and what has been sat with. Notes link to each other directly, and the Constellation page draws those links as a map. Collections group them by territory rather than by chronology.\n\n## Why it is built this way\nA blog rewards finished opinions and buries them the moment they scroll. A garden lets an idea stay visible and keep changing. Since most of what I think about takes years rather than posts, this suited the work better.\n\n## Built with\nHand-written HTML, CSS, and JavaScript in a single file, reading markdown from this repository. No framework, no tracking, no comments section. Type is set in Grenze Gotisch, Parisienne, Cormorant Garamond, and IBM Plex Mono.\n\n> the map is not the territory, but somebody drew the map\n",
- "content/pages/home.md": "---\neyebrow: a digital garden\nheading: The Garden\nimage:\ngallery:\ngallerycaptions:\ngallerytitle: fragments\nintro: Territory — the politics of land, myth, and nonhuman life. Who holds the authority to narrate the natural world, and what colonialism did to that authority.\n---\n\n::: spread | assets/land.jpg | the map is not the territory\n# The Question Underneath\n^ what this is for\nStories about nature are never neutral. Whoever decides what counts as wild, sacred, or myth is exercising power — and colonialism's deepest damage was not only extraction but the replacement of one set of stories about land with another, called universal.\n\nEverything here circles that. Sometimes as political writing, sometimes as fiction, sometimes as a half-formed note that has been sitting for a year.\n:::\n\n::: spread dark | assets/novel.jpg | drafting, slowly and on purpose\n# Written Three Ways\n^ the same argument\nThe essays argue it directly. The novel works it from the inside, through non-Western mythology. The worldbuilding tests it at low stakes, where a magic system can carry the politics of the cosmology it borrows from.\n\nNone of the three is finished. That is rather the point of a garden.\n:::\n\n::: arch | assets/left.jpg | assets/right.jpg\n# What You Will Find Here\n^ how to wander\nNotes at three stages of growth — seedling, budding, evergreen — grouped by territory rather than by date, and linked to each other wherever the thinking connects.\n:::\n\n::: spread | assets/reading.jpg | the shelf, in progress\n# Still Reading\n^ where it comes from\nNixon on slow violence. Ghosh on the nutmeg. Tuhiwai Smith on who is permitted to produce knowledge. The [[Reading Log]] keeps the running list, and the [[Territory Map]] holds the shape of the argument.\n:::\n",
+ "content/manifest.json": "{\n  \"notes\": [\n    \"building-this-site\",\n    \"how-to-write-a-leaf\",\n    \"ink-in-still-water\",\n    \"nyvarran-and-the-myth-critique\",\n    \"open-questions\",\n    \"reading-log\",\n    \"research-toolkit\",\n    \"shibuibynia\",\n    \"territory-map\",\n    \"the-novel\",\n    \"the-political-engram\",\n    \"wwf-fieldwork\"\n  ],\n  \"writing\": [\n    \"example-piece\"\n  ]\n}\n",
+ "content/pages/home.md": "---\neyebrow: a working cosmology\nheading: The Garden\nimage:\ngallery:\ngallerycaptions:\ngallerytitle: fragments\nintro: Writer, researcher, and analyst. Six spheres of work — environment, fiction, research, analysis, design, and journaling — circling one question: who holds the authority to narrate the natural world.\n---\n\n::: spread | assets/art/a97fd52b9cbf9e9d9d3fe1af61691389.jpg | the map is not the territory\n# One Question, Six Ways\n^ what this is for\nStories about nature are never neutral. Whoever decides what counts as wild, sacred, or myth is exercising power. I come at that from several directions at once — in the field, in the archive, in analysis, and in fiction — and each sphere here is one of those directions.\n:::\n\n::: table | Sphere | What I bring\n# What I Bring\nEnvironment :: conservation fieldwork with WWF, writing on land and power\nFiction :: a novel in progress, worldbuilding grounded in myth\nResearch :: qualitative interviews, research methods, synthesis\nAnalysis :: political analysis at The Political Engram; editorial lead at Sincerely Theirs\nDesign :: the ShibuiByNia brand, and this site\nJournaling :: craft essays at Ink In Still Water\n:::\n\n::: spread dark | assets/art/d8e2899d6aee7d52fc4e859cd502d96e.jpg | drafting, slowly and on purpose\n# Working, Not Finished\n^ how to read this\nEach sphere opens onto its own page: the skills it holds, and the entries that show them. Notes carry a growth stage — faint, waxing, fixed — so you can tell a passing thought from something settled.\n:::\n",
+ "content/pages/about.md": "---\nname: Nia\ntagline: writer · researcher · analyst\nbased: Ankara\nwriting: essays & fiction\nportrait:\nbanner:\ngallery:\ngallerycaptions:\n---\n\nI write. That is the first and most stubborn fact about me — essays, fiction, and a great deal that never leaves the notebook.\n\nMost of what I make circles one question: who holds the authority to narrate the natural world, and what colonialism did to that authority. It shows up as political writing about conservation and the Global South, and as fiction — a novel drawing on non-Western mythology to work the same argument from the inside.\n\n::: table | Where | What\n# Where the Work Happens\nSincerely Theirs :: Editorial Lead — 50,000+ words a month, three editors and 20 writers\nWWF Pakistan :: Conservation Management Intern — 30 interviews, five cities in Punjab\nMETU :: BA International Relations; editorial leadership in the Foreign Policy and IR Society\nUniversity of Warsaw :: Erasmus exchange\n:::\n\nThis site is the working room rather than the finished shelf. Start with the [[Territory Map]].\n",
  "content/pages/now.md": "---\nupdated: August 2026\nbanner:\nbannercaption:\n---\n\nUpdated whenever it stops being true.\n\n## Writing\n- The novel — drafting, slowly and on purpose\n- Essays connecting myth, land, and power\n\n## Reading\n- Working through the [[Reading Log]]\n\n## Thinking about\n- What a magic system owes the cosmology it borrows from\n- Where greenwashing and disinformation overlap\n",
- "content/writing/example-piece.md": "---\ntitle: Replace this with your first published piece\noutlet: The Political Engram\ndate: March 2026\nurl:\n---\n\nA one-line note on what the piece argues. Delete this file once you have real entries, and remember to remove its name from manifest.json.\n"
+ "content/pages/colophon.md": "---\nstamp: how and why this is built\nbanner:\nbannercaption:\n---\n\nThis is a digital garden rather than a blog. Nothing here is arranged by date, and very little of it is finished.\n\n## How it works\nEvery note carries a growth stage — seedling, budding, evergreen — so you can tell what is a passing thought and what has been sat with. Notes link to each other directly, and the Constellation page draws those links as a map. Collections group them by territory rather than by chronology.\n\n## Why it is built this way\nA blog rewards finished opinions and buries them the moment they scroll. A garden lets an idea stay visible and keep changing. Since most of what I think about takes years rather than posts, this suited the work better.\n\n## Built with\nHand-written HTML, CSS, and JavaScript in a single file, reading markdown from this repository. No framework, no tracking, no comments section. Type is set in Grenze Gotisch, Parisienne, Cormorant Garamond, and IBM Plex Mono.\n\n> the map is not the territory, but somebody drew the map\n",
+ "content/writing/example-piece.md": "---\ntitle: Replace this with your first published piece\noutlet: The Political Engram\ndate: March 2026\nurl:\n---\n\nA one-line note on what the piece argues. Delete this file once you have real entries, and remember to remove its name from manifest.json.\n",
+ "content/notes/territory-map.md": "---\ntitle: Territory Map\nstage: budding\ncollection: environment\ntags: [territory, reading]\nupdated: 2026-08-01\nbanner:\nbannercaption:\n---\n\nWho holds authority to narrate the natural world — and what colonialism did to that authority. Fiction, political writing, and worldbuilding are three registers of one question.\n\n## People & concepts to hold\n- Fortress conservation — parks built by excluding the people who lived there first\n- Green colonialism — climate urgency reproducing old displacement\n- Rob Nixon, *Slow Violence and the Environmentalism of the Poor*\n- Amitav Ghosh, *The Nutmeg's Curse*\n- Linda Tuhiwai Smith, *Decolonizing Methodologies*\n- Land Back; Indigenous Protected and Conserved Areas\n\n> the map is not the territory, but somebody drew the map\n\n---\n\nSee [[Open Questions]] for the gaps, and [[Nyvarran & the Myth Critique]] for where the fiction tests it first.\n",
+ "content/notes/wwf-fieldwork.md": "---\ntitle: WWF Pakistan — Fieldwork\nstage: evergreen\ncollection: environment\ntags: [conservation, fieldwork, portfolio]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nConservation Management Intern at WWF in Pakistan, 2019–2020. The first time the argument about land stopped being abstract.\n\n::: table | What I did | Scale\n# The Work\ncoordinated community cleanliness drives and eco-products :: a seven-member team\nran community engagement across Punjab :: five cities\nconducted qualitative interviews on carbon emissions :: 30 interviews\nturned findings into policy recommendations :: implemented by WWF\n:::\n\nThe interviews are where the method in [[Research Toolkit]] started.\n",
+ "content/notes/nyvarran-and-the-myth-critique.md": "---\ntitle: Nyvarran & the Myth Critique\nstage: seedling\ncollection: fiction\ntags: [fiction, worldbuilding]\nupdated: 2026-08-04\nbanner:\nbannercaption:\n---\n\nSix arcana, six houses, six patron animals — Nyvarran runs on the idea that a philosophy of nature can also be a form of political power. Which is, unintentionally, the argument in [[Territory Map]] played out as fiction first.\n\nWorth testing: what would it mean for a house's claim to land to carry the weight real relationships to land carry, rather than remaining pure aesthetic?\n\nSee [[Open Questions]].\n",
+ "content/notes/the-novel.md": "---\ntitle: The Novel\nstage: seedling\ncollection: fiction\ntags: [fiction, novel]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nA novel drawing on non-Western mythology to critique colonialism from the inside — the same question as the essays, asked in a register where it can be felt rather than argued.\n\nDrafting, slowly and on purpose. The worldbuilding tests live in [[Nyvarran & the Myth Critique]].\n",
+ "content/notes/reading-log.md": "---\ntitle: Reading Log\nstage: budding\ncollection: research\ntags: [reading]\nupdated: 2026-07-20\nbanner:\nbannercaption:\n---\n\n- [ ] Rob Nixon — *Slow Violence and the Environmentalism of the Poor*\n- [ ] Amitav Ghosh — *The Nutmeg's Curse*\n- [ ] Linda Tuhiwai Smith — *Decolonizing Methodologies*\n- [ ] Robin Wall Kimmerer — *Braiding Sweetgrass*\n- [ ] Elizabeth DeLoughrey — *Allegories of the Anthropocene*\n\nNotes as I go. Context in [[Territory Map]].\n",
+ "content/notes/research-toolkit.md": "---\ntitle: Research Toolkit\nstage: budding\ncollection: research\ntags: [methods, portfolio]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nWhat I actually reach for when I need to understand something properly.\n\n::: entry accent | Methods\nQualitative interviewing (30 interviews in the field — see [[WWF Pakistan — Fieldwork]]), close reading, and synthesis: turning a pile of sources into one argument someone else can follow.\n:::\n\n## Where the training came from\n- BA International Relations, METU — Diplomacy, Human Rights, Research Methods, Society and Culture\n- Erasmus, University of Warsaw — International Law, Postcolonial Discourse, Soft Power in International Relations\n\n## Tools\n- Google Workspace, Excel sheets, Obsidian, ClickUp\n- Claude, for research, editing, and repetitive tasks\n",
+ "content/notes/open-questions.md": "---\ntitle: Open Questions\nstage: seedling\ncollection: analysis\ntags: [territory]\nupdated: 2026-07-28\nbanner:\nbannercaption:\n---\n\nThings nobody seems to be writing yet.\n\n- What happens if a fantasy magic system keeps the *politics* of the cosmology it borrows from — land rights, kinship, colonial history — instead of only the aesthetics?\n- Where does greenwashing overlap with disinformation? Who gets framed as a poacher in coverage, and who decides?\n- Is the native/invasive binary in conservation science as neutral as it sounds?\n\nLinked from [[Territory Map]]. Tested in [[Nyvarran & the Myth Critique]].\n",
+ "content/notes/the-political-engram.md": "---\ntitle: The Political Engram\nstage: evergreen\ncollection: analysis\ntags: [analysis, substack, portfolio]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nMy independent political analysis on international affairs, the Global South, and disinformation.\n\n::: omens\n# The rules I edit by\n- One controlling argument per piece. Everything else serves it or goes.\n- Start somewhere specific and unexpected, then open out into the larger politics.\n- Abstract ideas have to land in material reality — supply chains, goods, lived experience.\n- Source from non-obvious places.\n:::\n\n## Editing, professionally\nI lead the editorial team at Sincerely Theirs, directing 50,000+ words of client writing a month with a team of three editors and 20 writers.\n",
+ "content/notes/shibuibynia.md": "---\ntitle: ShibuiByNia\nstage: budding\ncollection: design\ntags: [brand, design, portfolio]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nAn apparel brand on Etsy that I built from zero — the name, the branding, the product designs, and the marketing.\n\n::: entry accent | What it exercises\nVisual identity, product design, writing product copy that sounds like the brand, and reading what customers respond to. Made mostly in Canva.\n:::\n",
+ "content/notes/building-this-site.md": "---\ntitle: Building This Site\nstage: budding\ncollection: design\ntags: [web, design, portfolio]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nHand-written HTML, CSS, and JavaScript in a single file, reading markdown from its repository. No framework, no tracking.\n\nThe design brief to myself: a digital garden rather than a blog, arranged by territory rather than by date. See the colophon for the long version.\n",
+ "content/notes/ink-in-still-water.md": "---\ntitle: Ink In Still Water\nstage: budding\ncollection: journaling\ntags: [craft, substack]\nupdated: 2026-09-16\nbanner:\nbannercaption:\n---\n\nMy second Substack — essays on the craft and practice of writing, and on what it takes to keep going with it.\n\nIt began as a home for notes on the novel ([[The Novel]]) and wandered. Deciding what it is for is part of the work.\n",
+ "content/notes/how-to-write-a-leaf.md": "---\ntitle: How to Write a Leaf\nstage: evergreen\ncollection: journaling\ntags: [guide, formatting]\nupdated: 2026-08-18\nbanner:\nbannercaption: a caption sits beneath the picture, in script\n---\n\nEvery note is a plain text file in `content/notes/`. The block at the very top — between the two lines of dashes — is the frontmatter, where the title, stage, sphere, and tags live. Everything after it is what you see here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nThe first letter of the first paragraph becomes an illuminated capital automatically.\n\n# Ordinary Writing\n\nType one hash for a major heading, two for the flowing script heading below. Write **bold** with two asterisks, *italic* with one, and link to another note with double brackets like [[Territory Map]].\n\n## A flourish heading\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\n- Begin a line with a dash for a botanical bullet\n- Excepteur sint occaecat cupidatat non proident\n- [x] a finished thing, which strikes itself through\n- [ ] a thing still waiting\n\n> A line beginning with a bracket becomes a pulled quote\n\n---\n\n::: spread | assets/one.jpg | a caption for the picture\n# A Spread\n^ picture on the left\nThis is a spread block. The picture sits on one side and the words on the other. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.\n\nWrite as many paragraphs as you like inside it — they all stay beside the picture.\n:::\n\n::: spread | assets/two.jpg | another caption\n# It Alternates\n^ picture on the right\nUse `spread` again and the picture automatically moves to the other side. Keep adding them and they keep alternating down the page, the way the reference designs do.\n\nIf you want to force a side instead, write `spread-left` or `spread-right`.\n:::\n\n::: arch | assets/left.jpg | assets/right.jpg\n# Between Two Arches\n^ the almanac arrangement\nTwo arched pictures with the words held between them. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.\n:::\n\n::: cluster | assets/a.jpg | assets/b.jpg | assets/c.jpg | assets/d.jpg\n# A Scattered Cluster\nSmall plates sitting at slightly different heights, each numbered. Good for fragments, references, or a run of images that belong together.\n:::\n\n::: band dark | assets/wide.jpg\n# Words Over a Picture\n^ a full width band\nThe picture runs the full width and the words lay over it. Add `dark` to any block to invert it onto a dark panel, like the lower half of the almanac design.\n:::\n\n::: spread\n# An Empty Slot\nLeave the picture path out entirely and the block shows a marked empty frame, so you can build a page before you have the pictures for it.\n:::\n\n## Bestiary blocks\n\nThree more blocks, for when a note needs the density of a reference page.\n\n::: entry accent | Property\n# Property\nA bordered box with a solid header bar. Write `::: entry | Header name` and the\nwords inside become the body. Add the word `accent` to colour the bar.\n:::\n\n::: table | Term | Meaning\n# A Small Table\nseedling :: a thought not yet sat with\nbudding :: taking a shape, still moving\nevergreen :: settled enough to build on\n:::\n\nWrite each row as `left :: right`. The two words after the pipe become column headings.\n\n::: omens\n# Omens\n- Begin each line with a dash. They number themselves, in the manner of a field guide.\n- Add the word `two` after `omens` to set them in two columns.\n- Sed ut perspiciatis unde omnis iste natus error sit voluptatem.\n:::\n\n## Adding your own\n\nCopy any block above, change the picture paths and the words, and move the whole block up or down by cutting and pasting it. Add as many as you want — there is no limit to how many picture slots a page can hold.\n\nLeave a picture path empty and you get a marked empty slot, so you can lay out a page before you have the pictures.\n",
+ "content/regions/environment.md": "---\nintro: Conservation, land, and nonhuman life — and who gets to narrate them.\n---\n\n::: table | Skill | Where it shows\n# Skills in This Sphere\nconservation writing :: [[Territory Map]]\nfieldwork & community engagement :: [[WWF Pakistan — Fieldwork]]\npolicy recommendations :: [[WWF Pakistan — Fieldwork]]\n:::\n",
+ "content/regions/fiction.md": "---\nintro: The novel and the worlds around it.\n---\n\n::: table | Skill | Where it shows\n# Skills in This Sphere\nlong-form fiction :: [[The Novel]]\nworldbuilding :: [[Nyvarran & the Myth Critique]]\n:::\n",
+ "content/regions/research.md": "---\nintro: How the thinking gets built.\n---\n\n::: table | Skill | Where it shows\n# Skills in This Sphere\nqualitative interviews :: [[WWF Pakistan — Fieldwork]]\nresearch methods & synthesis :: [[Research Toolkit]]\nsustained reading :: [[Reading Log]]\n:::\n",
+ "content/regions/analysis.md": "---\nintro: International affairs, the Global South, and disinformation.\n---\n\n::: table | Skill | Where it shows\n# Skills in This Sphere\npolitical analysis :: [[The Political Engram]]\neditorial leadership :: [[The Political Engram]]\nfinding the gaps :: [[Open Questions]]\n:::\n",
+ "content/regions/design.md": "---\nintro: Making things look like what they mean.\n---\n\n::: table | Skill | Where it shows\n# Skills in This Sphere\nbranding & product design :: [[ShibuiByNia]]\nweb design :: [[Building This Site]]\n:::\n",
+ "content/regions/journaling.md": "---\nintro: The notebook, before things are sorted.\n---\n\n::: table | Skill | Where it shows\n# Skills in This Sphere\ncraft essays :: [[Ink In Still Water]]\nprocess notes :: [[How to Write a Leaf]]\n:::\n"
 };
 
 (function(){
@@ -975,7 +1002,7 @@ function drawHome(){
         '<div class="gline"></div>'+
         '<p class="lede">'+esc(page.meta.intro||'')+'</p>'+
         '<ul class="menu">'+
-          '<li><button data-v="colls">Explore</button></li>'+
+          '<li><button data-v="colls">Explore the work</button></li>'+
           '<li><button data-v="notes">Open the almanac</button></li>'+
           '<li><button data-v="graph">Trace the constellation</button></li>'+
           '<li><button data-v="about">About me</button></li>'+
@@ -1046,6 +1073,7 @@ function regionStrips(wide){
           '<span class="vpan__grad"></span></span>'+
         '<span class="vpan__mark">'+esc(c.num||'')+'</span>'+
         '<span class="vpan__cap"><span class="vpan__t">'+esc(c.name)+'</span>'+
+        (c.skills?'<span class="vpan__k">'+esc(c.skills)+'</span>':'')+
         '<span class="vpan__s">'+n2+' '+(n2===1?LEX.item:(LEX.items||LEX.item+'s'))+'</span></span></button>';
     }).join('')+'</div>';
 }
@@ -1073,10 +1101,6 @@ function drawCollPage(){
   document.getElementById('content').innerHTML=
     '<section class="pad"><div class="wrap" style="--rc:'+c.color+'">'+
       '<button class="back" id="back">\u2190 '+esc(LEX.colls)+'</button>'+
-      '<div class="region__art" style="margin-bottom:26px">'+
-        (artUrl?'<img src="'+esc(artUrl)+'" alt="" onerror="slotFail(this)" />'
-               :'<div class="fill"><span>'+esc(c.num||'')+'</span></div>')+
-      '</div>'+
       '<div class="mid"><div class="kick">region '+esc(c.num||'')+'</div>'+
         '<h1 class="h1" style="margin-top:8px;font-size:clamp(28px,4vw,50px)">'+esc(c.name)+'</h1>'+
         '<div class="gline mid"></div>'+
@@ -1182,7 +1206,7 @@ function drawCodex(){
 /* ═══ ONE ENTRY ═══ */
 function drawNote(n){
   var bl=backlinks(n),c=collById(n.coll);
-  var por=ART.portraits&&ART.portraits[n.id];
+  var por='';
   document.getElementById('content').innerHTML=
     '<section class="pad"><div class="wrap" style="--sc:'+collColor(n.coll)+'">'+
       '<button class="back" id="back">\u2190 '+esc(LEX.notes)+'</button>'+

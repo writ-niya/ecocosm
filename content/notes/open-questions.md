@@ -1,7 +1,7 @@
 ---
 title: Open Questions
 stage: seedling
-collection: fracture
+collection: analysis
 tags: [territory]
 updated: 2026-07-28
 banner:

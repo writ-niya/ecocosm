@@ -1,14 +1,14 @@
 ---
 title: How to Write a Leaf
 stage: evergreen
-collection: field
+collection: journaling
 tags: [guide, formatting]
 updated: 2026-08-18
 banner:
 bannercaption: a caption sits beneath the picture, in script
 ---
 
-Every note is a plain text file in `content/notes/`. The block at the very top — between the two lines of dashes — is the frontmatter, where the title, stage, folder, and tags live. Everything after it is what you see here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Every note is a plain text file in `content/notes/`. The block at the very top — between the two lines of dashes — is the frontmatter, where the title, stage, sphere, and tags live. Everything after it is what you see here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 The first letter of the first paragraph becomes an illuminated capital automatically.
 
